@@ -47,18 +47,13 @@ export class UrlProvider implements IUrlRepository {
     return urlsNbClickWhitoutDuplicate;
   }
 
-  findUrl(code: number) {
-    const urlFind = db.find((db) => db.shortUrl === code);
+  findUrl(code: string) {
+    const urlFind = db.find((url) => url.shortUrl === code);
 
     if (urlFind) {
       return urlFind
     } else {
       return false
     }
-  }
-
-  findAll() {
-    return db
-    
   }
 }

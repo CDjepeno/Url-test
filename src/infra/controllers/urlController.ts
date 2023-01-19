@@ -25,9 +25,9 @@ export class UrlController {
   ) => {
     try {
       const url = request.body;
-      const code = request.params;
+      const code = request.params.code;
 
-      const result = await redirectUrlInteractor.execute(+code);
+      const result = await redirectUrlInteractor.execute(code);
       return response.redirect(result)
     } catch (err) {
       return response.status(500).send(err);
@@ -47,21 +47,4 @@ export class UrlController {
       return response.status(500).send(err);
     }
   };
-
-  static findAll = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) => {
-    try {
-      const provider = new UrlProvider()
-      const result = await provider.findAll()
-      return response.json(result) 
- 
-    } catch (err) {
-      return response.status(500).send(err);
-    }
-  };
-
-
 }

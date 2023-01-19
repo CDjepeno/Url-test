@@ -5,7 +5,7 @@ import { UrlStat } from "../../types/type";
 export class RedirectUrl {
   constructor(private repository: IUrlRepository) {}
 
-  async execute(code: number): Promise<string> {
+  async execute(code: string): Promise<string> {
       const url = this.repository.findUrl(code)
 
       if(!url) {
