@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Test Url",
+    "description": "Test Lunii",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Local Dev"
+    }
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+
+    }
+
+  },
+  "tags": [
+    { "name": "Url", "description": "API for url" }
+  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/urls": {
+      "post": {
+        "tags": ["Url"],
+        "summary": "Post url",
+        "requestBody": {
+          "description": "post url",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Url"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+    },
+    "/api/shortcut/analytics": {
+      "get": {
+        "tags": ["Url"],
+        "summary": "Get stats for all url",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Url"],
+        "summary": "Redirect in right url",
+        "responses": {
+          "403": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+      
+    },
+    "/api/shorturl/:code": {
+      "get": {
+        "tags": ["Url"],
+        "summary": "Get stats for all url",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Url"],
+        "summary": "Redirect in right url",
+        "responses": {
+          "403": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Failed. Bad post data."
+          }
+        }
+      }
+      
+    }
+  },
+
+  "definitions": {
+    "Url": {
+      "type": "object",
+      "properties": {
+        "originalUrl": {
+          "type": "string"
+        } 
+      }
+    }
+  },
+  "Url": {
+    "type": "object",
+    "properties": {
+      "user": {
+        "type": "object",
+        "additionnalProperties":{
+          "$ref": "#/definitions/Url"
+        }
+      }
+    }
+  }
+}
