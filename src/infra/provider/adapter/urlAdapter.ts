@@ -7,5 +7,6 @@ const urlRepository = new UrlProvider()
 
 const addUrlInteractor = new AddUrl(urlRepository)
 const getStatUrlInteractor = new GetStatUrl(urlRepository)
+const redirectUrlInteractor = new GetStatUrl(urlRepository)
 
-export { addUrlInteractor, getStatUrlInteractor }
+export { addUrlInteractor, getStatUrlInteractor, redirectUrlInteractor }

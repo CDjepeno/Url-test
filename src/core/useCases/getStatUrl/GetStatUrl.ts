@@ -5,8 +5,6 @@ export class GetStatUrl {
   constructor(private repository: IUrlRepository) {}
 
   async execute(): Promise<GetStatResponse[]> {
-      
-      return this.repository.getStat()
-          
+    return this.repository.getStat();
   }
 }
