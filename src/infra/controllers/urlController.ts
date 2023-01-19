@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { addUrlInteractor, getStatUrlInteractor } from "../provider/adapter/urlAdapter";
+import { addUrlInteractor, getStatUrlInteractor, redirectUrlInteractor } from "../provider/adapter/urlAdapter";
+import { UrlProvider } from '../provider/urlProvider';
 const db: Array<any> = [];
 
 export class UrlController {
@@ -26,7 +27,8 @@ export class UrlController {
       const url = request.body;
       const code = request.params;
 
-     
+      const result = await redirectUrlInteractor.execute(+code);
+      return response.redirect(result)
     } catch (err) {
       return response.status(500).send(err);
     }
@@ -39,6 +41,21 @@ export class UrlController {
   ) => {
     try {
       const result = await getStatUrlInteractor.execute();
+      return response.json(result) 
+ 
+    } catch (err) {
+      return response.status(500).send(err);
+    }
+  };
+
+  static findAll = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const provider = new UrlProvider()
+      const result = await provider.findAll()
       return response.json(result) 
  
     } catch (err) {

@@ -5,14 +5,14 @@ import { UrlStat } from "../../types/type";
 export class RedirectUrl {
   constructor(private repository: IUrlRepository) {}
 
-  async execute(code: number): Promise<UrlStat> {
+  async execute(code: number): Promise<string> {
       const url = this.repository.findUrl(code)
 
       if(!url) {
         throw new NotFound('Not URL Found')
       }
 
-      return url
+      return url.originalUrl
           
   }
 }

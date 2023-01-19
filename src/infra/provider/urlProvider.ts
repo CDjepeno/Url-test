@@ -25,15 +25,12 @@ export class UrlProvider implements IUrlRepository {
   }
 
   getStat() {
-    const sommeEachUrl = db.reduce((acc, cur) => {
+    const sommeNbClickEachUrl = db.reduce((acc, cur) => {
       return { ...acc, [cur.originalUrl]: (acc[cur.originalUrl] || 0) + 1 };
     }, {});
 
-    console.log(sommeEachUrl);
-    
-
-    const urlWithNbClickDuplicate: Array<GetStatResponse> = db.map((url) => {
-      for (const [key, value] of Object.entries(sommeEachUrl)) {
+    const urlsWithNbClickDuplicate: Array<GetStatResponse> = db.map((url) => {
+      for (const [key, value] of Object.entries(sommeNbClickEachUrl)) {
         if (url.originalUrl === key) {
           url.nbClick = value;
         }
@@ -43,7 +40,7 @@ export class UrlProvider implements IUrlRepository {
 
     const urlsNbClickWhitoutDuplicate: Array<GetStatResponse> = Array.from(new Set(db.map((a) => a.originalUrl))).map(
       (d) => {
-        return urlWithNbClickDuplicate.find((a) => a.originalUrl === d);
+        return urlsWithNbClickDuplicate.find((a) => a.originalUrl === d);
       }
     );
 
@@ -58,5 +55,10 @@ export class UrlProvider implements IUrlRepository {
     } else {
       return false
     }
+  }
+
+  findAll() {
+    return db
+    
   }
 }
