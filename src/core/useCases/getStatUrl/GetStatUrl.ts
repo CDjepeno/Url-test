@@ -1,4 +1,4 @@
-import { IUrlRepository } from "../../repository/IUrlRepository";
+import { IUrlRepository } from "../../repository/repository/IUrlRepository";
 import { GetStatResponse } from "./GetStatResponse";
 
 export class GetStatUrl {

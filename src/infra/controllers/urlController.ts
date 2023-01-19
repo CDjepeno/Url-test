@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { addUrlInteractor } from "../provider/adapter/urlAdapter";
+import { addUrlInteractor, getStatUrlInteractor } from "../provider/adapter/urlAdapter";
 const db: Array<any> = [];
 
 export class UrlController {
@@ -27,6 +27,20 @@ export class UrlController {
       const code = request.params;
 
      
+    } catch (err) {
+      return response.status(500).send(err);
+    }
+  };
+
+  static stat = async (
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const result = await getStatUrlInteractor.execute();
+      return response.json(result) 
+ 
     } catch (err) {
       return response.status(500).send(err);
     }

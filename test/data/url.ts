@@ -19,3 +19,4 @@ export const url: UrlStat = {
   originalUrl: "https://www.facebook.com",
   shortUrl: "DSGFQSGDS",
 }
+

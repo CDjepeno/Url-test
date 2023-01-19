@@ -1,5 +1,5 @@
-import { UrlStat } from "../types/type";
-import { GetStatResponse } from "../useCase/getStatUrl/GetStatResponse";
+import { UrlStat } from "../../types/type"
+import { GetStatResponse } from "../../useCases/getStatUrl/GetStatResponse"
 
 export interface IUrlRepository {
    saveUrl(url: string): UrlStat
